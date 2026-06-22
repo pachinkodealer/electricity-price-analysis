@@ -40,6 +40,8 @@ The chart below shows how much each has risen over rolling six-year stretches, g
 
 ![Electricity vs. overall inflation, rolling 6-year change](charts/electricity_money_chart.png)
 
+The green shaded band is the 2010s **"shale boom"** decade, when fracking made natural gas cheap and abundant. Look at what electricity did: it went flat. That's the old normal — when fuel got cheap, electricity inflation cooled right off. The absence of that cool-off today is exactly the anomaly this whole analysis is chasing.
+
 A useful comparison is the early 1980s, when electricity famously spiked ~70%. That looks alarming until you notice *everything* was spiking then — it was just high inflation, and in real terms electricity barely moved.
 
 Today is different. Electricity is now pulling clearly **above** the cost-of-living line. The current run-up is one of the steepest in the entire 47-year record, and it's outpacing general inflation — which the early-'80s spike never did. So "it's just inflation" doesn't hold up.
