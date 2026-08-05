@@ -1,0 +1,8 @@
+metric,value,unit
+Electricity price change 2014-2020,0.0,%
+Electricity price change since 2020,47.8,%
+Gas decline from 2022 peak,-65.0,%
+Electricity change since 2022 gas peak,19.0,%
+Gas-electricity correlation (6-mo lag),0.53,r
+"Unexplained inflation, 2024+ (pts/yr)",2.6,pct pts/yr
+Model R-squared (pre-2023),0.425,r2

@@ -8,7 +8,7 @@ Natural gas prices spiked in 2022 and then fell all the way back. Your electric 
 
 ## The question
 
-From 2014 to 2020, the average price of US electricity was basically flat. Then it took off — **up 46% since 2020.**
+From 2014 to 2020, the average price of US electricity was basically flat. Then it took off — **up 48% since 2020.**
 
 That kind of jump usually has a simple cause: the fuel that runs power plants got more expensive, or general inflation pushed everything up. So the question is straightforward: **is this just fuel and inflation, or is something genuinely new going on?**
 
@@ -24,7 +24,7 @@ That first half still happened. Gas prices roughly **quadrupled** in 2022 (the p
 
 Then gas did something dramatic: it gave the *entire* spike back. Gas is now **65% below its 2022 peak** — cheaper than before the crisis.
 
-Electricity never followed it down. Since gas peaked in 2022, **gas has fallen 65% while retail electricity has risen another 17%.** The two lines used to move together; now they've split apart completely.
+Electricity never followed it down. Since gas peaked in 2022, **gas has fallen 65% while retail electricity has risen another 19%.** The two lines used to move together; now they've split apart completely.
 
 ![Gas spiked, electricity followed — then gas fell and electricity didn't](charts/gas_vs_electricity.png)
 
@@ -56,7 +56,7 @@ The gap between what the model expects and what actually happened is the part th
 
 ![The part of electricity inflation that gas and inflation can't explain](charts/residual_model.png)
 
-For most of history that gap hovers around zero — meaning fuel and inflation explained things well. But starting around 2023 it lifts off and stays up: electricity has been running about **2.7 percentage points per year hotter** than fuel and inflation can account for, and it hasn't settled back down.
+For most of history that gap hovers around zero — meaning fuel and inflation explained things well. But starting around 2023 it lifts off and stays up: electricity has been running about **2.6 percentage points per year hotter** than fuel and inflation can account for, and it hasn't settled back down.
 
 What changed around then? For the first time in roughly two decades, US electricity demand started growing again — driven largely by the **buildout of AI datacenters**, along with related grid upgrades and the cost of keeping the grid reliable as old power plants retire.
 
