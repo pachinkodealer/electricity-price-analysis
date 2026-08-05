@@ -127,13 +127,18 @@ for name, (csv, cols) in tables.items():
 # ----------------------------------------------------------------- report side
 wj(REPORT / "definition.pbir", {
     "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definitionProperties/1.0.0/schema.json",
-    "version": "4.0",
+    "version": "1.0",
     "datasetReference": {"byPath": {"path": f"../{PROJ}.SemanticModel"}},
+})
+
+# PBIR requires a version.json declaring the report-definition schema version
+wj(REPORT / "definition" / "version.json", {
+    "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/versionMetadata/1.0.0/schema.json",
+    "version": "2.0.0",
 })
 
 wj(REPORT / "definition" / "report.json", {
     "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/2.0.0/schema.json",
-    "themeCollection": {"baseTheme": {"name": "CY24SU10"}},
     "settings": {"useStylableVisualContainerHeader": True},
 })
 
@@ -166,6 +171,8 @@ def sum_field(ent, prop):
 
 
 def visual(name, x, y, wd, ht, vtype, roles, title):
+    # title kept as an argument for readability but not emitted (auto-title avoids
+    # the formatting-object schema, the most fragile part of hand-authored PBIR)
     return {
         "$schema": VC,
         "name": name,
@@ -173,8 +180,6 @@ def visual(name, x, y, wd, ht, vtype, roles, title):
         "visual": {
             "visualType": vtype,
             "query": {"queryState": {role: {"projections": proj} for role, proj in roles.items()}},
-            "objects": {"title": [{"properties": {"text": {"expr": {"Literal": {"Value": f"'{title}'"}}},
-                                                  "show": {"expr": {"Literal": {"Value": "true"}}}}}]},
             "drillFilterOtherVisuals": True,
         },
     }
