@@ -9,6 +9,7 @@ Requires (to OPEN the result): Power BI Desktop (2024+), with
 Run:  py build_pbip.py     (re-runnable; overwrites the project tree)
 """
 import json
+import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).parent
@@ -186,27 +187,19 @@ def visual(name, x, y, wd, ht, vtype, roles, title):
 
 
 E = "electricity_monthly"
+# START SMALL: one visual only, to confirm the project opens. Once this renders,
+# re-add the others (metrics table, inflation line, residual column, era slicer).
 visuals = [
-    visual("v_metrics", 16, 16, 400, 320, "tableEx",
-           {"Values": [col_field("key_metrics", "metric"), sum_field("key_metrics", "value")]},
-           "Key metrics"),
-    visual("v_ratchet", 432, 16, 832, 320, "lineChart",
+    visual("v_ratchet", 48, 48, 1160, 600, "lineChart",
            {"Category": [col_field(E, "date")],
             "Y": [sum_field(E, "elec_index_jan2020"), sum_field(E, "gas_index_jan2020_12mo_avg")]},
            "Gas fell back. Electricity didn't. (Jan 2020 = 100)"),
-    visual("v_inflation", 16, 352, 624, 352, "lineChart",
-           {"Category": [col_field(E, "date")],
-            "Y": [sum_field(E, "elec_change_6yr_pct"), sum_field(E, "cpi_change_6yr_pct")]},
-           "Electricity vs. overall inflation (6-yr change)"),
-    visual("v_residual", 656, 352, 448, 352, "columnChart",
-           {"Category": [col_field(E, "date")], "Y": [sum_field(E, "residual_unexplained_pct")]},
-           "Inflation not explained by gas or CPI"),
-    visual("v_era", 1120, 352, 144, 352, "slicer",
-           {"Values": [col_field(E, "era")]},
-           "Era"),
 ]
+visuals_dir = REPORT / "definition" / "pages" / "overview" / "visuals"
+if visuals_dir.exists():
+    shutil.rmtree(visuals_dir)  # drop stale visuals so removed ones don't linger
 for v in visuals:
-    wj(REPORT / "definition" / "pages" / "overview" / "visuals" / v["name"] / "visual.json", v)
+    wj(visuals_dir / v["name"] / "visual.json", v)
 
 # ------------------------------------------------------------- validate + report
 import glob

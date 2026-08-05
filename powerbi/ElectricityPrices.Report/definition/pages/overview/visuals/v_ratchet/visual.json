@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
   "name": "v_ratchet",
   "position": {
-    "x": 432,
-    "y": 16,
+    "x": 48,
+    "y": 48,
     "z": 0,
-    "width": 832,
-    "height": 320,
+    "width": 1160,
+    "height": 600,
     "tabOrder": 0
   },
   "visual": {
