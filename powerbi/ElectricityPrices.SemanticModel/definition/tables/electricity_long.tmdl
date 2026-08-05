@@ -1,0 +1,28 @@
+table electricity_long
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		sourceColumn: date
+
+	column metric
+		dataType: string
+		sourceColumn: metric
+
+	column unit
+		dataType: string
+		sourceColumn: unit
+
+	column value
+		dataType: double
+		sourceColumn: value
+
+	partition electricity_long = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\idcom\USA_Job_Market\Energy\powerbi\electricity_long.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"date", type date}, {"metric", type text}, {"unit", type text}, {"value", type number}})
+				in
+				    Typed

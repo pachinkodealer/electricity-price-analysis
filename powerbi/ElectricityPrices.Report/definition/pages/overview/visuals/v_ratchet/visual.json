@@ -1,0 +1,102 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "v_ratchet",
+  "position": {
+    "x": 432,
+    "y": 16,
+    "z": 0,
+    "width": 832,
+    "height": 320,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "electricity_monthly"
+                    }
+                  },
+                  "Property": "date"
+                }
+              },
+              "queryRef": "electricity_monthly.date",
+              "nativeQueryRef": "date"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "electricity_monthly"
+                        }
+                      },
+                      "Property": "elec_index_jan2020"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(electricity_monthly.elec_index_jan2020)",
+              "nativeQueryRef": "elec_index_jan2020"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "electricity_monthly"
+                        }
+                      },
+                      "Property": "gas_index_jan2020_12mo_avg"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(electricity_monthly.gas_index_jan2020_12mo_avg)",
+              "nativeQueryRef": "gas_index_jan2020_12mo_avg"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Gas fell back. Electricity didn't. (Jan 2020 = 100)'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

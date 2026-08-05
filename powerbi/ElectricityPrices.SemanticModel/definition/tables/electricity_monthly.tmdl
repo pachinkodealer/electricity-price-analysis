@@ -1,0 +1,76 @@
+table electricity_monthly
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		sourceColumn: date
+
+	column elec_price_usd_per_kwh
+		dataType: double
+		sourceColumn: elec_price_usd_per_kwh
+
+	column cpi_index
+		dataType: double
+		sourceColumn: cpi_index
+
+	column gas_price_usd_per_mmbtu
+		dataType: double
+		sourceColumn: gas_price_usd_per_mmbtu
+
+	column elec_index_jan2020
+		dataType: double
+		sourceColumn: elec_index_jan2020
+
+	column gas_index_jan2020
+		dataType: double
+		sourceColumn: gas_index_jan2020
+
+	column gas_index_jan2020_12mo_avg
+		dataType: double
+		sourceColumn: gas_index_jan2020_12mo_avg
+
+	column elec_change_6yr_pct
+		dataType: double
+		sourceColumn: elec_change_6yr_pct
+
+	column cpi_change_6yr_pct
+		dataType: double
+		sourceColumn: cpi_change_6yr_pct
+
+	column elec_yoy_pct
+		dataType: double
+		sourceColumn: elec_yoy_pct
+
+	column gas_yoy_pct
+		dataType: double
+		sourceColumn: gas_yoy_pct
+
+	column cpi_yoy_pct
+		dataType: double
+		sourceColumn: cpi_yoy_pct
+
+	column gas_yoy_lag6
+		dataType: double
+		sourceColumn: gas_yoy_lag6
+
+	column model_predicted_elec_yoy_pct
+		dataType: double
+		sourceColumn: model_predicted_elec_yoy_pct
+
+	column residual_unexplained_pct
+		dataType: double
+		sourceColumn: residual_unexplained_pct
+
+	column era
+		dataType: string
+		sourceColumn: era
+
+	partition electricity_monthly = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\idcom\USA_Job_Market\Energy\powerbi\electricity_monthly.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"date", type date}, {"elec_price_usd_per_kwh", type number}, {"cpi_index", type number}, {"gas_price_usd_per_mmbtu", type number}, {"elec_index_jan2020", type number}, {"gas_index_jan2020", type number}, {"gas_index_jan2020_12mo_avg", type number}, {"elec_change_6yr_pct", type number}, {"cpi_change_6yr_pct", type number}, {"elec_yoy_pct", type number}, {"gas_yoy_pct", type number}, {"cpi_yoy_pct", type number}, {"gas_yoy_lag6", type number}, {"model_predicted_elec_yoy_pct", type number}, {"residual_unexplained_pct", type number}, {"era", type text}})
+				in
+				    Typed

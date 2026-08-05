@@ -1,0 +1,23 @@
+table key_metrics
+
+	column metric
+		dataType: string
+		sourceColumn: metric
+
+	column value
+		dataType: double
+		sourceColumn: value
+
+	column unit
+		dataType: string
+		sourceColumn: unit
+
+	partition key_metrics = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\idcom\USA_Job_Market\Energy\powerbi\key_metrics.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"metric", type text}, {"value", type number}, {"unit", type text}})
+				in
+				    Typed
